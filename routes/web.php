@@ -39,6 +39,8 @@ Route::middleware('auth')->group(function(){
     // View Người Chơi
     Route::prefix('nguoi-choi')->group(function(){
         Route::get('danh-sach','NguoiChoiController@index')->name('danh-sach-nguoi-choi');
+        Route::get('chinh-sua/{id}','NguoiChoiController@edit')->name('chinh-sua-nguoi-choi') ;
+        Route::post('chinh-sua/{id}','NguoiChoiController@update')->name('xu-ly-chinh-sua-nguoi-choi') ;
         Route::get('xoa/{id}','NguoiChoiController@destroy')->name('xoa-nguoi-choi');
         Route::get('da-xoa','NguoiChoiController@trash')->name('danh-sach-nguoi-choi-da-xoa');
         Route::get('phuc-hoi/{id}','NguoiChoiController@restore')->name('phuc-hoi-nguoi-choi');

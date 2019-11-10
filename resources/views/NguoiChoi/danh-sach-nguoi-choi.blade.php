@@ -11,7 +11,7 @@
 <h1>Danh sách người chơi đã xóa</h1>
 @endif
 
-<div class="row">   
+<div class="row">
     <div class="col-12">
         <div class="card">
             <div class="card-body">
@@ -44,11 +44,16 @@
                             <td>{{ $value->diem_cao_nhat}}</td>
 
                             <td>
-
+                                <a href="{{ route('chinh-sua-nguoi-choi',['id' => $value->id ]) }}"
+                                    class="btn btn-success btn-x" id="sa-params">
+                                    <i class="mdi mdi-pencil color" style="padding-right:5px"></i>Chỉnh sửa
+                                </a>
                                 <a href="{{ route('xoa-nguoi-choi',['id' => $value->id ]) }}"
                                     class="btn btn-danger btn-x" id="sa-params">
                                     <i class="mdi mdi-trash-can-outline color" style="padding-right:5px"></i>Xóa
                                 </a>
+
+
                             </td>
                         </tr>
                         @endforeach
