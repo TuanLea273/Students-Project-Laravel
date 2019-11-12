@@ -10,6 +10,18 @@
                 <h3 class="header-title"> Thêm Mới Lĩnh Vực </h3>
                 <form class="form-horizontal" action="{{route('xu-ly-them-moi-linh-vuc')}}" method="POST" >
                  @csrf
+                    @if($errors->any())
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">×</span>
+                                </button>
+                                <ul>
+                                    @foreach($errors->all() as $error)
+                                        <li>{{ $error}}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                    @endif
                     <div class="form-group row mb-3">
                         <div class="col-12">
                             <input type="text" class="form-control" id="" name="ten_linh_vuc" placeholder="Nhập tên lĩnh vực">

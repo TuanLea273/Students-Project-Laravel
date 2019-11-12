@@ -10,9 +10,25 @@
 
                 <form class="form-horizontal" action="{{ route('xu-ly-chinh-sua-linh-vuc',['id'=>$linhVuc->id])}}" method="POST">
                 @csrf
+                    @if($errors->any())
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">×</span>
+                                </button>
+                                <ul>
+                                    @foreach($errors->all() as $error)
+                                        <li>{{ $error}}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                    @endif
                     <div class="form-group row mb-3">
                         <div class="col-12">
+                            @if(isset($linhVuc))
                             <input type="text" class="form-control" id="ten_linh_vuc" name="ten_linh_vuc" value="{{ $linhVuc->ten_linh_vuc }}" placeholder="Nhập tên lĩnh vực">
+                            @else
+                            <input type="text" class="form-control" id="ten_linh_vuc" name="ten_linh_vuc" value="" placeholder="Nhập tên lĩnh vực">
+                            @endif
                         </div>
                     </div>
 

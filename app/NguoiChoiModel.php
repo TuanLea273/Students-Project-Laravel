@@ -14,4 +14,9 @@ class NguoiChoiModel extends Model
     {
         return $this->hasMany('App\LuotChoiModel');
     }
+    public function dsGoiCredit()
+    {
+    	return $this->belongsToMany('App\GoiCreditModel','lich_su_mua_credit','nguoi_choi_id','goi_credit_id','id','id');
+    }
+    
 }

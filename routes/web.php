@@ -44,6 +44,7 @@ Route::middleware('auth')->group(function(){
         Route::get('xoa/{id}','NguoiChoiController@destroy')->name('xoa-nguoi-choi');
         Route::get('da-xoa','NguoiChoiController@trash')->name('danh-sach-nguoi-choi-da-xoa');
         Route::get('phuc-hoi/{id}','NguoiChoiController@restore')->name('phuc-hoi-nguoi-choi');
+        Route::get('danh-sach-lich-su','NguoiChoiController@HistoryIndex')->name('lich-su-mua-credit');
     });
     // View Gói Credit
     Route::prefix('goi-credit')->group(function(){

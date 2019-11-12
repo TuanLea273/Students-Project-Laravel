@@ -16,9 +16,13 @@
         <div class="card">
             <div class="card-body">
                 @if($hienThi == 1)
+
                 <a href="{{route('danh-sach-nguoi-choi-da-xoa')}}" style="margin-bottom: 10px; color:black"
                     class="btn btn-warning waves-effect waves-light">
                     <i class="fas fa-database" style="padding-right:10px"></i> Danh sách người chơi đã xóa</a>
+                <a href="{{route('lich-su-mua-credit')}}" style="margin-bottom: 10px;color:black;"
+                class="btn btn-warning waves-effect waves-light">
+                    <i class="fas fa-database" style="padding-right:10px"></i>Danh sách lịch sử mua credit</a>
                 @endif
                 <table id="basic-datatable" class="table table-striped table-bordered dt-responsive nowrap">
                     <thead class="thead-dark">

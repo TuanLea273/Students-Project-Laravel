@@ -78,5 +78,12 @@ class NguoiChoiController extends Controller
         Alert::success('Phục hồi thành công');
         return redirect()->route('danh-sach-nguoi-choi-da-xoa');
     }
-   
+    public function HistoryIndex()
+    {
+        //$dsNguoiChoi = GoiCreditModel::find(1)->dsNguoiChoi()->get();
+        $dsNguoiChoi = NguoiChoiModel::all();
+        $dem = 0;
+        return view('LichSu.lich-su-mua-credit-nguoi-choi',compact('dsNguoiChoi','dem'));
+    }
+    
 }

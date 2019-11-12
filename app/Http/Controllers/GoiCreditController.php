@@ -122,5 +122,11 @@ class GoiCreditController extends Controller
         Alert::success('Khôi phục thành công!');
         return redirect()->route('danh-sach-goi-credit');
     }
-    
+    public function HistoryIndex()
+    {
+        //$dsNguoiChoi = GoiCreditModel::find(1)->dsNguoiChoi()->get();
+        $dsGoiCredit = GoiCreditModel::all();
+        $dem = 0;
+        return view('LichSu.lich-su-mua-credit-goi-credit',compact('dsGoiCredit','dem'));
+    }
 }

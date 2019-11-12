@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\LinhVucModel;
 use Illuminate\Http\Request;
+use App\Http\Requests\LinhVucRequest;
 use Alert;
 
 class LinhVucController extends Controller
@@ -18,30 +19,27 @@ class LinhVucController extends Controller
     {
         return view('LinhVuc.them-moi-linh-vuc');
     }
-    public function store(Request $request)
+    public function store(LinhVucRequest $request)
     {
         //
         $linhVuc = new LinhVucModel;
-        if(isset($request->ten_linh_vuc))
+        
+        $ten_linh_vuc =  $request->ten_linh_vuc;
+        
+        $flag = $linhVuc::where('ten_linh_vuc',$ten_linh_vuc)->exists(); 
+        
+        if (!$flag)
         {
-            $ten_linh_vuc =  $request->ten_linh_vuc;
-            
-            $flag = $linhVuc::where('ten_linh_vuc',$ten_linh_vuc)->exists(); 
-            
-            if (!$flag) {
             $linhVuc->ten_linh_vuc  = $ten_linh_vuc;
             $linhVuc->save();
             Alert::success('Thêm lĩnh vực thành công!','Successfully');
-            }
-            else{
-                Alert::warning('Thêm lĩnh vực thất bại !','Đã tồn tại lĩnh vực này!');
-            }
             return view('LinhVuc.them-moi-linh-vuc');
         }
-    else{
-        Alert::warning('Thêm lĩnh vực thất bại !','Nội dung không được để trống!');
-        return view('LinhVuc.them-moi-linh-vuc');
-    }
+        else
+        {
+            return redirect()->route('them-moi-linh-vuc');
+        }
+        
     }
     public function edit($id)
     {
@@ -51,22 +49,25 @@ class LinhVucController extends Controller
     }
 
     
-    public function update(Request $request, $id)
+    public function update(LinhVucRequest $request, $id)
     {
-        //
-        $linhVuc= new LinhVucModel;
-        $linhVuc= LinhVucModel::find($id);
+
+        $linhVuc = LinhVucModel::find($id);
+
         $ten_linh_vuc= $request->ten_linh_vuc;
+
         $flag = $linhVuc::where('ten_linh_vuc',$ten_linh_vuc)->exists();
         if (!$flag) {
             $linhVuc->ten_linh_vuc = $ten_linh_vuc;
             $linhVuc->save();
-            Alert::success('Chỉnh sửa thành công!','Successfully');
+            Alert::success('Chỉnh sửa lĩnh vực thành công!','Successfully');
+            return view('LinhVuc.danh-sach-linh-vuc',compact('linhVuc'));
         }
-        else{
-            Alert::warning('Chỉnh sửa thất bại!');
+        else
+        {
+            return redirect()->route('chinh-sua-linh-vuc');
         }
-           return view('LinhVuc.chinh-sua-linh-vuc',compact('linhVuc'));
+        
             
     }
     public function destroy($id)
