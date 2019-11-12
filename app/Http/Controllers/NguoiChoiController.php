@@ -53,8 +53,7 @@ class NguoiChoiController extends Controller
 
     public function destroy($id)
     {
-        $nguoiChoi = NguoiChoiModel::find($id);
-        $nguoiChoi->delete();
+        $nguoiChoi = NguoiChoiModel::Where('id',$id)->delete();
        
         if($nguoiChoi)
         { 
@@ -73,17 +72,23 @@ class NguoiChoiController extends Controller
     }
     public function restore($id)
     {
-        $nguoiChoiDaXoa = NguoiChoiModel::withTrashed()->find($id);
-        $nguoiChoiDaXoa->restore();
+        NguoiChoiModel::Where('id',$id)->restore();
         Alert::success('Phục hồi thành công');
         return redirect()->route('danh-sach-nguoi-choi-da-xoa');
     }
     public function HistoryIndex()
     {
-        //$dsNguoiChoi = GoiCreditModel::find(1)->dsNguoiChoi()->get();
+        $hienThi = 1;
         $dsNguoiChoi = NguoiChoiModel::all();
-        $dem = 0;
-        return view('LichSu.lich-su-mua-credit-nguoi-choi',compact('dsNguoiChoi','dem'));
+        return view('LichSu.lich-su-mua-credit-nguoi-choi',compact('dsNguoiChoi','hienThi'));
+    }
+
+    public function show($id)
+    {
+        $hienThi = 2;
+        $nguoiChoi = NguoiChoiModel::find($id);
+        $goiCredit = NguoiChoiModel::find($id)->dsGoiCredit;
+        return view('LichSu.lich-su-mua-credit-nguoi-choi',compact('nguoiChoi','goiCredit','hienThi'));
     }
     
 }

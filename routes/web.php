@@ -45,6 +45,7 @@ Route::middleware('auth')->group(function(){
         Route::get('da-xoa','NguoiChoiController@trash')->name('danh-sach-nguoi-choi-da-xoa');
         Route::get('phuc-hoi/{id}','NguoiChoiController@restore')->name('phuc-hoi-nguoi-choi');
         Route::get('danh-sach-lich-su','NguoiChoiController@HistoryIndex')->name('lich-su-mua-credit');
+         Route::get('lich-su/{id}','NguoiChoiController@show')->name('lich-su-cua-nguoi-choi');
     });
     // View Gói Credit
     Route::prefix('goi-credit')->group(function(){
@@ -56,6 +57,7 @@ Route::middleware('auth')->group(function(){
         Route::get('xoa/{id}','GoiCreditController@destroy')->name('xoa-goi-credit');
         Route::get('da-xoa','GoiCreditController@trash')->name('danh-sach-goi-credit-da-xoa');
         Route::get('phuc-hoi/{id}','GoiCreditController@restore')->name('phuc-hoi-goi-credit');
+        Route::get('lich-su/{id}','GoiCreditController@show')->name('lich-su-cua-goi-credit');
     });
     // View Lượt Chơi
     Route::prefix('luot-choi')->group(function(){

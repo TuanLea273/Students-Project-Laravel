@@ -11,6 +11,6 @@ class GoiCreditModel extends Model
 
     public function dsNguoiChoi()
     {
-    	return $this->belongsToMany('App\NguoiChoiModel','lich_su_mua_credit','goi_credit_id','nguoi_choi_id','id','id');
+    	return $this->belongsToMany('App\NguoiChoiModel','lich_su_mua_credit','goi_credit_id','nguoi_choi_id','id','id')->withPivot('id','credit','so_tien');
     }
 }
