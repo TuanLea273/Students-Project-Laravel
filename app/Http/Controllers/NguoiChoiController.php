@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\NguoiChoiModel;
 use App\LuotChoiModel;
 use Illuminate\Http\Request;
+use App\Http\Requests\NguoiChoiRequest;
 use Alert;
 
 class NguoiChoiController extends Controller
@@ -30,27 +31,23 @@ class NguoiChoiController extends Controller
         return view('NguoiChoi.chinh-sua-nguoi-choi',compact('nguoiChoi'));
     }
 
-    public function update(Request $request,$id)
+    public function update(NguoiChoiRequest $request,$id)
     {   
         $nguoiChoi = NguoiChoiModel::findOrFail($id);
         $ten_dang_nhap = $request->input('ten_dang_nhap');
+        $mat_khau = $request->input('mat_khau');
         $email = $request->input('email');
         $hinh_dai_dien = $request->input('hinh_dai_dien');
-        if($ten_dang_nhap =='' || $email == ''){
-            Alert::warning('Chỉnh sửa thất bại','Email hoặc Tên đăng nhập không được để trống');
-            return redirect()->route('chinh-sua-nguoi-choi');
-        }
-        else{
-            $nguoiChoi->ten_dang_nhap = $ten_dang_nhap;
-            $nguoiChoi->email = $email;
-            $nguoiChoi->hinh_dai_dien = $hinh_dai_dien;
-            $nguoiChoi->save();
+        $nguoiChoi->ten_dang_nhap = $ten_dang_nhap;
+        $nguoiChoi->email = $email;
+        $nguoiChoi->mat_khau =$mat_khau;
+        $nguoiChoi->hinh_dai_dien = $hinh_dai_dien;
+        $nguoiChoi->save();
             if($nguoiChoi){
-            Alert::success('Cập nhật thành công');}
+            Alert::success('Cập nhật thành công');
+            return redirect()->route('danh-sach-nguoi-choi');
         }
-        return redirect()->route('danh-sach-nguoi-choi');
-    }
-
+    }    
     public function destroy($id)
     {
         $nguoiChoi = NguoiChoiModel::find($id);
@@ -80,10 +77,17 @@ class NguoiChoiController extends Controller
     }
     public function HistoryIndex()
     {
-        //$dsNguoiChoi = GoiCreditModel::find(1)->dsNguoiChoi()->get();
+        $hienThi = 1;
         $dsNguoiChoi = NguoiChoiModel::all();
-        $dem = 0;
-        return view('LichSu.lich-su-mua-credit-nguoi-choi',compact('dsNguoiChoi','dem'));
+        return view('LichSu.lich-su-mua-credit-nguoi-choi',compact('dsNguoiChoi','hienThi'));
+    }
+
+    public function show($id)
+    {
+        $hienThi = 2;
+        $nguoiChoi = NguoiChoiModel::find($id);
+        $goiCredit = NguoiChoiModel::find($id)->dsGoiCredit;
+        return view('LichSu.lich-su-mua-credit-nguoi-choi',compact('nguoiChoi','goiCredit','hienThi'));
     }
     
 }

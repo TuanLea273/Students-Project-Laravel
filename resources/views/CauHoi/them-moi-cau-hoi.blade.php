@@ -11,17 +11,29 @@
             
             <form class="form-horizontal" action="{{ route('xu-ly-them-moi-cau-hoi') }}" method="POST">
             @csrf
+            @if($errors->any())
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                    <ul>
+                        @foreach($errors->all() as $error)
+                            <li>{{ $error}}</li>
+                        @endforeach
+                    </ul>
+                </div>
+             @endif
                     <div class="form-group row mb-3">
                         <div class="col-12">
                             <label for="exampleInputEmail1">Nội dung câu hỏi</label>
-                            <input name="txtNoiDungCauHoi" type="text" class="form-control" placeholder="Nội dung câu hỏi">
+                            <input name="noi_dung" type="text" class="form-control" placeholder="Nội dung câu hỏi">
                         </div>
                     </div>
                     <div class="form-group row mb-3">
                         <div class="col-12">
                             <label for="exampleInputEmail1">Lĩnh vực ID:</label>
                             <!-- <dd>   -->
-                            <select name="txtLinhVucID">
+                            <select name="linh_vuc_id">
                             @foreach($getLinhVucID as $value) 
                             <option value="{{ $value->id }}">{{$value->ten_linh_vuc}}</option> 
                             @endforeach
@@ -32,31 +44,31 @@
                     <div class="form-group row mb-3">
                         <div class="col-12">
                             <label for="exampleInputEmail1">Phương án A</label>
-                            <input name="txtA" type="text" class="form-control" placeholder="Phương án A">
+                            <input name="phuong_an_a" type="text" class="form-control" placeholder="Phương án A">
                         </div>
                     </div>
                     <div class="form-group row mb-3">
                         <div class="col-12">
                             <label for="exampleInputEmail1">Phương án B</label>
-                            <input name="txtB" type="text" class="form-control" placeholder="Phương án B">
+                            <input name="phuong_an_b" type="text" class="form-control" placeholder="Phương án B">
                         </div>
                     </div>
                     <div class="form-group row mb-3">
                         <div class="col-12">
                             <label for="exampleInputEmail1">Phương án C</label>
-                            <input name="txtC" type="text" class="form-control" placeholder="Phương án C">
+                            <input name="phuong_an_c" type="text" class="form-control" placeholder="Phương án C">
                         </div>  
                     </div>
                     <div class="form-group row mb-3">
                         <div class="col-12">
                             <label for="exampleInputEmail1">Phương án D</label>
-                            <input name="txtD" type="text" class="form-control" placeholder="Phương án D">
+                            <input name="phuong_an_d" type="text" class="form-control" placeholder="Phương án D">
                         </div>
                     </div>
                     <div class="form-group row mb-3">
                         <div class="col-12">
                         <label for="exampleInputEmail1">Đáp án:</label>
-                        <select name="txtDapAn">
+                        <select name="dap_an">
                             <option value="A">A</option>
                             <option value="B">B</option>
                             <option value="C">C</option>

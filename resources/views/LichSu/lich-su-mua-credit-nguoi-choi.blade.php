@@ -4,7 +4,11 @@
 @include('Body.css')
 <!-- Page Content -->
 @section('page-content')
-<h1>Lịch sử mua credit</h1>
+@if($hienThi == 1)
+<h1>Danh sách lịch sử mua credit</h1>
+@else
+<h1>Lịch sử mua credit của người chơi</h1>
+@endif
 <div class="row">
     <div class="col-12">
         <div class="card">
@@ -12,7 +16,7 @@
                 <table id="basic-datatable" class="table table-striped table-bordered dt-responsive nowrap">
                     <thead class="thead-dark">
                         <tr>
-                            <th style="color:white">Lượt mua</th>
+                            <th style="color:white">ID</th>
                             <th style="color:white">Người chơi</th>
                             <th style="color:white">Tên gói</th>
                             <th style="color:white">Credit</th>
@@ -20,18 +24,29 @@
                         </tr>
                     </thead>
                     <tbody>
-                        
-                        @foreach($dsNguoiChoi as $nguoiChoi)
-                            @foreach($nguoiChoi->dsGoiCredit as $credit)
-                            <tr style="font-size: 120%; font-weight: bold;">
-                                <td>{{ $dem = $dem + 1 }}</td>
-                                <td>{{ $nguoiChoi->ten_dang_nhap }}</td>
-                                <td>{{ $credit->ten_goi }}</td>
-                                <td>{{ $credit->credit }}</td>
-                                <td>{{ $credit->so_tien }}</td>
-                            </tr>
+                        @if($hienThi == 1)
+                            @foreach($dsNguoiChoi as $nguoiChoi)
+                                @foreach($nguoiChoi->dsGoiCredit as $credit)
+                                <tr style="font-size: 120%; font-weight: bold;">
+                                    <td>{{ $credit->pivot->id }}</td>
+                                    <td>{{ $nguoiChoi->ten_dang_nhap }}</td>
+                                    <td>{{ $credit->ten_goi }}</td>
+                                    <td>{{ $credit->pivot->credit }}</td>
+                                    <td>{{ $credit->pivot->so_tien }}</td>
+                                </tr>
+                                @endforeach
                             @endforeach
-                        @endforeach
+                        @else
+                             @foreach($goiCredit as $credit)
+                                <tr style="font-size: 120%; font-weight: bold;">
+                                    <td>{{ $credit->pivot->id }}</td>
+                                    <td>{{ $nguoiChoi->ten_dang_nhap }}</td>
+                                    <td>{{ $credit->ten_goi }}</td>
+                                    <td>{{ $credit->pivot->credit }}</td>
+                                    <td>{{ $credit->pivot->so_tien }}</td>
+                                </tr>
+                                @endforeach
+                        @endif
                         
                     </tbody>
                 </table>

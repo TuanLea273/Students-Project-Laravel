@@ -14,8 +14,13 @@ class LuotChoiModel extends Model
     {
         return $this->belongsTo('App\NguoiChoiModel');
     }
-    public function chiTiet()
+    //Cách 1
+    // public function chiTiet()
+    // {
+    //     return $this->belongsTo('App\ChiTietLuotChoiModel');
+    // }
+    public function dsCauHoi()
     {
-        return $this->belongsTo('App\ChiTietLuotChoiModel');
+        return $this->belongsToMany('App\CauHoiModel','chi_tiet_luot_choi','luot_choi_id','cau_hoi_id','id','id')->withPivot('id','phuong_an','diem');
     }
 }

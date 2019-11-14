@@ -20,7 +20,7 @@ class LuotChoiController extends Controller
    public function show($id)
    {
     $luotChoi = LuotChoiModel::find($id);
-    $chiTiet = ChiTietLuotChoiModel::where('luot_choi_id',$luotChoi->id)->get();
-    return view('ChiTietLuotChoi.danh-sach-chi-tiet-luot-choi',compact('luotChoi','chiTiet'));
+    $cauHoi = LuotChoiModel::find($id)->dsCauHoi;
+    return view('ChiTietLuotChoi.danh-sach-chi-tiet-luot-choi',compact('luotChoi','cauHoi'));
    }
 }

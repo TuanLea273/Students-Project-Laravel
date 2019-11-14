@@ -2,7 +2,7 @@
 
 @section('page-content')
 
-<h1>Thêm mới câu hỏi</h1>
+<h1>Chỉnh sửa gói credit </h1>
 
 <div class="row ">
     <div class="col-lg-12">
@@ -11,7 +11,18 @@
             
             <form class="form-horizontal" action="{{ route('xl-chinh-sua-goi-credit',['id' => $goiCredit->id]) }}" method="POST">
             @csrf
-                
+            @if($errors->any())
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                    <ul>
+                        @foreach($errors->all() as $error)
+                        <li>{{ $error}}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif   
                     <div class="form-group row mb-3">
                         <div class="col-12">
                             <label for="exampleInputEmail1">Tên gói credit</label>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use App\Http\Requests\CauHoiRequest;
 use App\CauHoiModel;
 use App\LinhVucModel;
 use Alert;
@@ -28,41 +29,37 @@ class CauHoiController extends Controller
     }
 
 
-    public function store(Request $request)
+    public function store(CauHoiRequest $request)
     {
-             $cauHoi = new CauHoiModel();
-             $noiDungCauHoi = $request->input('txtNoiDungCauHoi');
-             $linhVucID = $request->input('txtLinhVucID');
-             $phuongAnA = $request->input('txtA');
-             $phuongAnB = $request->input('txtB');
-             $phuongAnC = $request->input('txtC');
-             $phuongAnD = $request->input('txtD');
-             $dapAn = $request->input('txtDapAn');
-           
-             if($noiDungCauHoi == '' || $linhVucID == '' ||
-             $phuongAnA == '' || $phuongAnB == '' ||
-             $phuongAnC == '' || $phuongAnD == '' ||
-             $dapAn == ''){
-                Alert::warning('Thêm thất bại', 'Không được để trống'); 
-                 return  redirect()->route('them-moi-cau-hoi');}
-             else{
-                 $cauHoi->noi_dung = $noiDungCauHoi;
-                 $cauHoi->linh_vuc_id = $linhVucID;
-                 $cauHoi->phuong_an_a = $phuongAnA;
-                 $cauHoi->phuong_an_b = $phuongAnB;
-                 $cauHoi->phuong_an_c = $phuongAnC;
-                 $cauHoi->phuong_an_d = $phuongAnD;
-                 $cauHoi->dap_an = $dapAn;
-                 $cauHoi->save();
-                 if($cauHoi){
-                    Alert::success('Thêm câu hỏi thành công', 'Successfully'); 
-                 }
-                 return  redirect()->route('danh-sach-cau-hoi');
-             }
-        
-         return  redirect()->route('danh-sach-cau-hoi');
-        
-    }
+            $cauHoi = new CauHoiModel();
+            $noiDungCauHoi = $request->input('noi_dung');
+            $linhVucID = $request->input('linh_vuc_id');
+            $phuongAnA = $request->input('phuong_an_a');
+            $phuongAnB = $request->input('phuong_an_b');
+            $phuongAnC = $request->input('phuong_an_c');
+            $phuongAnD = $request->input('phuong_an_d');
+            $dapAn = $request->input('dap_an');
+            $flag = $cauHoi::where('noi_dung',$noiDungCauHoi)->exists();
+            if(!$flag)
+            {
+                $cauHoi->noi_dung = $noiDungCauHoi;
+                $cauHoi->linh_vuc_id = $linhVucID;
+                $cauHoi->phuong_an_a = $phuongAnA;
+                $cauHoi->phuong_an_b = $phuongAnB;
+                $cauHoi->phuong_an_c = $phuongAnC;
+                $cauHoi->phuong_an_d = $phuongAnD;
+                $cauHoi->dap_an = $dapAn;
+                $cauHoi->save();
+
+                Alert::success('Thêm câu hỏi thành công', 'Successfully'); 
+                return  redirect()->route('danh-sach-cau-hoi');
+            }
+            else
+            {
+                    Alert::error('Thêm câu hỏi thất bại','Nội dung câu hỏi đã tồn tại !');
+                    return redirect()->route('them-moi-cau-hoi');
+            }
+     }
     public function show($id)
     {
         //
@@ -73,37 +70,27 @@ class CauHoiController extends Controller
         $getLinhVucID = LinhVucModel::all();
         return view('CauHoi.chinh-sua-cau-hoi',compact('cauHoi','getLinhVucID'));
     } 
-    public function update(Request $request, $id)
-    {
-        
+    public function update(CauHoiRequest $request, $id)
+    { 
         $cauHoi = CauHoiModel::find($id);
-        $noiDungCauHoi = $request->input('txtNoiDungCauHoi');
-        $linhVucID = $request->input('txtLinhVucID');
-        $phuongAnA = $request->input('txtA');
-        $phuongAnB = $request->input('txtB');
-        $phuongAnC = $request->input('txtC');
-        $phuongAnD = $request->input('txtD');
-        $dapAn = $request->input('txtDapAn');
-        if($noiDungCauHoi == '' || $linhVucID == '' ||
-            $phuongAnA == '' || $phuongAnB == '' ||
-            $phuongAnC == '' || $phuongAnD == '' ||
-            $dapAn == ''){
-            Alert::warning('Cập nhật thất bại','Không được để trống nội dung');
-            return  redirect()->route('chinh-sua-cau-hoi');
-        }
-        else
-        {
-            $cauHoi->noi_dung = $noiDungCauHoi;
-            $cauHoi->linh_vuc_id = $linhVucID;
-            $cauHoi->phuong_an_a = $phuongAnA;
-            $cauHoi->phuong_an_b = $phuongAnB;
-            $cauHoi->phuong_an_c = $phuongAnC;
-            $cauHoi->phuong_an_d = $phuongAnD;
-            $cauHoi->dap_an = $dapAn;
-            $cauHoi->save();
-            if($cauHoi){
-                Alert::success('Chỉnh sửa thành công', 'Successfully'); 
-            }
+        $getLinhVucID = LinhVucModel::all();
+        $noiDungCauHoi = $request->input('noi_dung');
+        $linhVucID = $request->input('linh_vuc_id');
+        $phuongAnA = $request->input('phuong_an_a');
+        $phuongAnB = $request->input('phuong_an_b');
+        $phuongAnC = $request->input('phuong_an_c');
+        $phuongAnD = $request->input('phuong_an_d');
+        $dapAn = $request->input('dap_an');
+        $cauHoi->noi_dung = $noiDungCauHoi;
+        $cauHoi->linh_vuc_id = $linhVucID;
+        $cauHoi->phuong_an_a = $phuongAnA;
+        $cauHoi->phuong_an_b = $phuongAnB;
+        $cauHoi->phuong_an_c = $phuongAnC;
+        $cauHoi->phuong_an_d = $phuongAnD;
+        $cauHoi->dap_an = $dapAn;
+        $cauHoi->save();
+        if($cauHoi){
+            Alert::success('Chỉnh sửa thành công', 'Successfully'); 
             return  redirect()->route('danh-sach-cau-hoi');
         }
     }
@@ -113,7 +100,7 @@ class CauHoiController extends Controller
         $cauHoi->delete();
         if($cauHoi)
         {
-            alert()->info('Xóa thành công', 'Successfully'); 
+            alert()->warning('Đã xóa câu hỏi', 'Dữ liệu sẽ bị xóa tạm thời'); 
         }
         return redirect()->route('danh-sach-cau-hoi');
     }

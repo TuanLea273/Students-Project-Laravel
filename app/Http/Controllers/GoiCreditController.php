@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\GoiCreditModel;
+use App\Http\Requests\GoiCreditRequest;
 use Alert;
 
 class GoiCreditController extends Controller
@@ -21,28 +22,14 @@ class GoiCreditController extends Controller
     }
 
     
-    public function store(Request $request)
+    public function store(GoiCreditRequest $request)
     {
+        $dsGoiCredit = new GoiCreditModel;
         $TenGoi = $request->input('txtTenGoiCredit');
         $Credit = $request->input('txtCredit');
         $SoTien = $request->input('txtSoTien');
-        //Kiểm tra xem gói credit đã tồn tại chưa
-        $dsGoiCredit = GoiCreditModel::all();
-        //Tạo biến cờ để lấy giá trị true/false;
-        //Ở đây ta mặc định cho nó = true tức là nó gói credit vừa thêm chưa có trong db
-        $flag = true;
-        //Chạy dòng foreach để duyệt danh sách các dòng
-        foreach ($dsGoiCredit as $value) {
-            //Kiểm tra có tồn tại hay chưa, có rỗng hay không
-            if($TenGoi == $value->ten_goi
-             || $TenGoi == '' || $Credit == '' || $SoTien == '')
-            {
-                alert()->warning('Thêm thất bại','Nội dung không được để trống');
-                $flag = false;
-            }
-        }
-        //Nếu mà gói vừa tạo hợp lệ thì ta thêm nó vào db
-        if($flag)
+        $flag = $dsGoiCredit::where('ten_goi',$TenGoi)->exists();
+        if(!$flag)
         {
             //Tạo mới 1 đối tượng gói credit
             $newGoiCredit = new GoiCreditModel();
@@ -57,9 +44,10 @@ class GoiCreditController extends Controller
             return redirect(route('danh-sach-goi-credit'));
 
         }
-        //Cần thêm dòng để thông báo lỗi
-        return redirect(route('danh-sach-goi-credit'));
-
+        else{
+            alert()->error('Thêm thất bại','Tên gói đã tồn tại');
+            return redirect(route('them-moi-goi-credit'));
+        }
     }
 
     public function edit($id)
@@ -67,20 +55,13 @@ class GoiCreditController extends Controller
         $goiCredit = GoiCreditModel::find($id);
         return view('GoiCredit.chinh-sua-goi-credit',compact('goiCredit'));
     }
-    public function update(Request $request, $id)
+    public function update(GoiCreditRequest $request, $id)
     {
         $TenGoi = $request->input('txtTenGoiCredit');
         $Credit = $request->input('txtCredit');
         $SoTien = $request->input('txtSoTien');
-
         //Tạo biến cờ để lấy giá trị true/false;
         $flag = true;
-        //Kiểm tra giá trị có rỗng hay không
-        if($TenGoi == '' || $Credit == '' || $SoTien == '')
-        {
-                $flag = false;
-                alert()->warning('Cập nhật thất bại!','Nội dung không được để trống');
-        }
         //Nếu mà gói vừa tạo hợp lệ thì ta thêm nó vào db
         if($flag)
         {

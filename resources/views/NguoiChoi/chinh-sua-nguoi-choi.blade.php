@@ -6,15 +6,26 @@
             <div class="card-body">
                
                 <form action="{{ route('xu-ly-chinh-sua-nguoi-choi', ['id' => $nguoiChoi->id]) }}" method="POST">
-        
                     @csrf
+                    @if($errors->any())
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">×</span>
+                                </button>
+                                <ul>
+                                    @foreach($errors->all() as $error)
+                                        <li>{{ $error}}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                    @endif
                     <div class="form-group">
                         <label for="ten_dang_nhap">Tên đăng nhập</label>
                         <input type="text" class="form-control" id="ten_dang_nhap" name="ten_dang_nhap" value="{{ $nguoiChoi->ten_dang_nhap }}">
                     </div>
                     <div class="form-group">
                         <label for="mat_khau">Mật khẩu</label>
-                        <input type="password" class="form-control" id="mat_khau" name="mat_khau">
+                        <input type="password" class="form-control" id="mat_khau" name="mat_khau" value="{{ $nguoiChoi->mat_khau }}">
                     </div>
                     <div class="form-group">
                         <label for="email">Email</label>

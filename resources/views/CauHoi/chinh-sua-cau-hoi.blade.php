@@ -11,17 +11,29 @@
 
                 <form class="form-horizontal" action="{{ route('xu-ly-chinh-sua-cau-hoi',['id' => $cauHoi->id]) }}" method="POST">
                 @csrf
+                @if($errors->any())
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                        <ul>
+                            @foreach($errors->all() as $error)
+                                <li>{{$error}}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                 @endif
                     <div class="form-group row mb-3">
                         <div class="col-12">
                         	<label for="exampleInputEmail1">Nội dung câu hỏi</label>
-                            <input name="txtNoiDungCauHoi" type="text" class="form-control"  value="{{ $cauHoi->noi_dung }}" placeholder="Nhập nội dung">
+                            <input name="noi_dung" type="text" class="form-control"  value="{{ $cauHoi->noi_dung }}" placeholder="Nhập nội dung">
                         </div>
                     </div>  
                     <div class="form-group row mb-3">
                         <div class="col-12">
                             <label for="exampleInputEmail1">Lĩnh vực ID:</label>
                             <!-- <dd>   -->
-                            <select name="txtLinhVucID">
+                            <select name="linh_vuc_id">
                             @foreach($getLinhVucID as $value) 
                             <option value="{{ $value->id }}">{{$value->ten_linh_vuc}}</option> 
                             @endforeach
@@ -32,32 +44,37 @@
                     <div class="form-group row mb-3">
                         <div class="col-12">
                         	<label for="exampleInputEmail1">Phương án a</label>
-                            <input name="txtA" type="text" class="form-control"  value="{{ $cauHoi->phuong_an_a }}" placeholder="Nhập phương án a">
+                            <input name="phuong_an_a" type="text" class="form-control"  value="{{ $cauHoi->phuong_an_a }}" placeholder="Nhập phương án a">
                         </div>
                     </div>
                     <div class="form-group row mb-3">
                         <div class="col-12">
                         	<label for="exampleInputEmail1">Phương án b</label>
-                            <input name="txtB" type="text" class="form-control"  value="{{ $cauHoi->phuong_an_b }}" placeholder="Nhập phương án b">
+                            <input name="phuong_an_b" type="text" class="form-control"  value="{{ $cauHoi->phuong_an_b }}" placeholder="Nhập phương án b">
                         </div>
                     </div>
                     <div class="form-group row mb-3">
                         <div class="col-12">
                         	<label for="exampleInputEmail1">Phương án c</label>
-                            <input name="txtC" type="text" class="form-control"  value="{{ $cauHoi->phuong_an_c }}" placeholder="Nhập phương án c">
+                            <input name="phuong_an_c" type="text" class="form-control"  value="{{ $cauHoi->phuong_an_c }}" placeholder="Nhập phương án c">
                         </div>
                     </div>
                     <div class="form-group row mb-3">
                         <div class="col-12">
                         	<label for="exampleInputEmail1">Phương án d</label>
-                            <input name="txtD" type="text" class="form-control"  value="{{ $cauHoi->phuong_an_d }}" placeholder="Nhập phương án d">
+                            <input name="phuong_an_d" type="text" class="form-control"  value="{{ $cauHoi->phuong_an_d }}" placeholder="Nhập phương án d">
                         </div>
                     </div>
                     <div class="form-group row mb-3">
                         <div class="col-12">
-                        	<label for="exampleInputEmail1">Đáp án</label>
-                            <input name="txtDapAn" type="text" class="form-control"  value="{{ $cauHoi->dap_an }}" placeholder="Nhập đáp án">
-                        </div>
+                            <label for="exampleInputEmail1">Đáp án:</label>
+                            <select name="dap_an">
+                                <option value="A">A</option>
+                                <option value="B">B</option>
+                                <option value="C">C</option>
+                                <option value="D">D</option>
+                            </select>
+                            </div>
                     </div>
                     <div class="form-group mb-0 justify-content-end row">
                         <div class="col-7">

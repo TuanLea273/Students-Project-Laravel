@@ -20,13 +20,13 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($chiTiet as $value)
+                        @foreach($cauHoi as $chiTiet)
                         <tr>
-                            <td>{{ $value->id}}</td>
-                            <td>{{ $value->luot_choi_id}} </td>
-                            <td>{{ $value->cauHoi->linhVuc->ten_linh_vuc}}</td>
-                            <td>{{ $value->phuong_an}}</td>
-                            <td>{{ $value->diem}}</td>
+                            <td>{{ $chiTiet->id}}</td>
+                            <td>{{ $chiTiet->pivot->luot_choi_id}} </td>
+                            <td>{{ $chiTiet->noi_dung}}</td>
+                            <td>{{ $chiTiet->pivot->phuong_an}}</td>
+                            <td>{{ $chiTiet->pivot->diem}}</td>
                         </tr>
                         @endforeach
                     </tbody>

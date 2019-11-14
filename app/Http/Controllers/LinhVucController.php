@@ -23,23 +23,20 @@ class LinhVucController extends Controller
     {
         //
         $linhVuc = new LinhVucModel;
-        
         $ten_linh_vuc =  $request->ten_linh_vuc;
-        
         $flag = $linhVuc::where('ten_linh_vuc',$ten_linh_vuc)->exists(); 
-        
         if (!$flag)
         {
             $linhVuc->ten_linh_vuc  = $ten_linh_vuc;
             $linhVuc->save();
             Alert::success('Thêm lĩnh vực thành công!','Successfully');
-            return view('LinhVuc.them-moi-linh-vuc');
+            return redirect()->route('danh-sach-linh-vuc');
         }
         else
         {
+            alert()->error('Thêm thất bại!','Lĩnh vực đã tồn tại');
             return redirect()->route('them-moi-linh-vuc');
         }
-        
     }
     public function edit($id)
     {
@@ -48,27 +45,22 @@ class LinhVucController extends Controller
         return view('LinhVuc.chinh-sua-linh-vuc',compact('linhVuc'));
     }
 
-    
     public function update(LinhVucRequest $request, $id)
     {
-
         $linhVuc = LinhVucModel::find($id);
-
         $ten_linh_vuc= $request->ten_linh_vuc;
-
         $flag = $linhVuc::where('ten_linh_vuc',$ten_linh_vuc)->exists();
         if (!$flag) {
             $linhVuc->ten_linh_vuc = $ten_linh_vuc;
             $linhVuc->save();
-            Alert::success('Chỉnh sửa lĩnh vực thành công!','Successfully');
-            return view('LinhVuc.danh-sach-linh-vuc',compact('linhVuc'));
+            Alert::success('Chỉnh sửa lĩnh vực thành công!','Successfully');    
         }
         else
         {
-            return redirect()->route('chinh-sua-linh-vuc');
-        }
-        
-            
+            Alert::error('Chỉnh sửa thất bại','Lĩnh vực đã tồn tại');
+            return view('LinhVuc.chinh-sua-linh-vuc',compact('linhVuc'));
+        }      
+        return redirect()->route('danh-sach-linh-vuc');
     }
     public function destroy($id)
     {
