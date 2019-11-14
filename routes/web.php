@@ -57,7 +57,6 @@ Route::middleware('auth')->group(function(){
         Route::get('xoa/{id}','GoiCreditController@destroy')->name('xoa-goi-credit');
         Route::get('da-xoa','GoiCreditController@trash')->name('danh-sach-goi-credit-da-xoa');
         Route::get('phuc-hoi/{id}','GoiCreditController@restore')->name('phuc-hoi-goi-credit');
-        Route::get('lich-su/{id}','GoiCreditController@show')->name('lich-su-cua-goi-credit');
     });
     // View Lượt Chơi
     Route::prefix('luot-choi')->group(function(){

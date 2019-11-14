@@ -104,7 +104,8 @@ class GoiCreditController extends Controller
     //Xóa mềm dữ liệu
     public function destroy($id)
     {
-        GoiCreditModel::Where('id',$id)->delete();
+        $goiCredit = GoiCreditModel::find($id);
+        $goiCredit->delete();
         Alert::warning('Đã xóa gói credit!','Dữ liệu sẽ bị xóa tạm thời');
         return redirect(route('danh-sach-goi-credit'));
     }
@@ -116,15 +117,16 @@ class GoiCreditController extends Controller
     }
     public function restore($id)
     {
-        GoiCreditModel::Where('id',$id)->restore();
+        $goiCredit = GoiCreditModel::onlyTrashed()->find($id);
+        $goiCredit->restore();
         Alert::success('Khôi phục thành công!');
         return redirect()->route('danh-sach-goi-credit');
     }
-
-    public function show($id)
-    {   
-        $goiCredit = GoiCreditModel::find($id);
-        $dsNguoiChoi = GoiCreditModel::find($id)->dsNguoiChoi;
-        return view('LichSu.lich-su-mua-credit-goi-credit',compact('goiCredit','dsNguoiChoi'));
+    public function HistoryIndex()
+    {
+        //$dsNguoiChoi = GoiCreditModel::find(1)->dsNguoiChoi()->get();
+        $dsGoiCredit = GoiCreditModel::all();
+        $dem = 0;
+        return view('LichSu.lich-su-mua-credit-goi-credit',compact('dsGoiCredit','dem'));
     }
 }

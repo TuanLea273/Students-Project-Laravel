@@ -18,4 +18,8 @@ class LuotChoiModel extends Model
     {
         return $this->belongsTo('App\ChiTietLuotChoiModel');
     }
+    public function dsChiTiet()
+    {
+        return $this->belongstoMany('App\CauHoiModel');
+    }
 }

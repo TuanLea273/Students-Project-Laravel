@@ -53,7 +53,8 @@ class NguoiChoiController extends Controller
 
     public function destroy($id)
     {
-        $nguoiChoi = NguoiChoiModel::Where('id',$id)->delete();
+        $nguoiChoi = NguoiChoiModel::find($id);
+        $nguoiChoi->delete();
        
         if($nguoiChoi)
         { 
@@ -72,7 +73,8 @@ class NguoiChoiController extends Controller
     }
     public function restore($id)
     {
-        NguoiChoiModel::Where('id',$id)->restore();
+        $nguoiChoiDaXoa = NguoiChoiModel::withTrashed()->find($id);
+        $nguoiChoiDaXoa->restore();
         Alert::success('Phục hồi thành công');
         return redirect()->route('danh-sach-nguoi-choi-da-xoa');
     }

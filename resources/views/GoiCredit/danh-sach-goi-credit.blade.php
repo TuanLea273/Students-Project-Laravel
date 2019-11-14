@@ -43,10 +43,6 @@
                                     <i class="mdi mdi-pencil color"></i>
                                     Sửa
                                 </a>
-                                <a href="{{ route('lich-su-cua-goi-credit',['id' => $value->id ]) }}"
-                                    class="btn btn-success btn-x" id="sa-params">
-                                    <i class="mdi mdi-pencil color" style="padding-right:5px"></i>Lịch sử
-                                </a>
                                 <a href="{{ route('xoa-goi-credit',['id' => $value->id]) }}" class="btn btn-info btn-x"
                                     id="sa-params">
                                     <i class="mdi mdi-trash-can-outline color"></i>Xóa
