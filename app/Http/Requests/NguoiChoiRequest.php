@@ -16,7 +16,7 @@ class NguoiChoiRequest extends FormRequest
         return [
             'ten_dang_nhap' => 'required',
             'mat_khau' => 'required',
-            'anh_dai_dien' => 'required',
+            'hinh_dai_dien' => 'required',
             'email' => 'required'
         ];
     }
@@ -25,7 +25,7 @@ class NguoiChoiRequest extends FormRequest
         return[
             'ten_dang_nhap.required' => 'Tên đăng nhập không được để trống',
             'mat_khau.required' =>'Mật khẩu không được để trống',
-            'anh_dai_dien.required' =>'Ảnh đại diện không được để trống',
+            'hinh_dai_dien.required' =>'Ảnh đại diện không được để trống',
             'email.required' => 'Email không được để trống'
         ];
     }

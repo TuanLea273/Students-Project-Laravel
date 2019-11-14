@@ -11,7 +11,7 @@
                 <form class="form-horizontal" action="{{route('xu-ly-them-moi-linh-vuc')}}" method="POST" >
                  @csrf
                     @if($errors->any())
-                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <div class="alert alert-danger bg-danger text-white border-1" role="alert">
                                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                     <span aria-hidden="true">×</span>
                                 </button>
