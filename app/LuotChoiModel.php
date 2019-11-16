@@ -23,8 +23,4 @@ class LuotChoiModel extends Model
     {
         return $this->belongsToMany('App\CauHoiModel','chi_tiet_luot_choi','luot_choi_id','cau_hoi_id','id','id')->withPivot('id','phuong_an','diem');
     }
-    public function dsChiTiet()
-    {
-        return $this->belongstoMany('App\CauHoiModel');
-    }
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\QuanTriVienRequest;
 use QuanTriVienModel;
 use Alert;
 
@@ -19,7 +20,7 @@ class QuanTriVienController extends Controller
     {
         return view('QuanTriVien.dang-nhap');
     }
-    public function xulyDangNhap(Request $request)
+    public function xulyDangNhap(QuanTriVienRequest $request)
     {
         $ten_dang_nhap = $request->ten_dang_nhap;
         $mat_khau = $request->mat_khau;
@@ -29,8 +30,8 @@ class QuanTriVienController extends Controller
             return redirect()->route('trang-chu');
         }
         else{
-            Alert::error('Đăng nhập thất bại','Cút');
-            return redirect()->route('dang-nhap');
+            $mess = 'Tên đăng nhập hoặc mật khẩu sai !';
+            return view('QuanTriVien.dang-nhap',compact('mess'));
         }
        
     }

@@ -59,11 +59,9 @@
                                     <i class="mdi mdi-pencil color" style="padding-right:5px"></i>
                                     Sửa
                                 </a>
-                                <a href="{{ route('xoa-cau-hoi',['id' => $value->id]) }}"
-                                    class="btn btn-danger waves-effect waves-light">
-                                    <i class="mdi mdi-trash-can-outline color" style="padding-right:5px"></i>
-                                    Xóa
-                                </a>
+                                <a href="{{route('xoa-cau-hoi',['id' => $value->id ])}}"
+                                    class="btn btn-danger waves-effect waves-light" style="color:white"><i
+                                        class="mdi mdi-trash-can-outline color " style="padding-right:5px"></i>Xóa</a>
                             </td>
                         </tr>
                         @endforeach

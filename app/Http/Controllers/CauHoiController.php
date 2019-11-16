@@ -98,10 +98,6 @@ class CauHoiController extends Controller
     {
         $cauHoi = CauHoiModel::find($id);
         $cauHoi->delete();
-        if($cauHoi)
-        {
-            alert()->warning('Đã xóa câu hỏi', 'Dữ liệu sẽ bị xóa tạm thời'); 
-        }
         return redirect()->route('danh-sach-cau-hoi');
     }
     public function trash()

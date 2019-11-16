@@ -15,7 +15,7 @@
     <link href="{{ asset('assets/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('assets/css/icons.min.css')}}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('assets/css/app.min.css')}}" rel="stylesheet" type="text/css" />
-   
+    <link href="{{ asset('assets/libs/sweetalert2/sweetalert2.min.css')}}" rel="stylesheet" type="text/css" />
 </head>
 
 <body>
@@ -168,6 +168,8 @@
     @yield('script')
     <!-- App js-->
     <script src="{{asset('assets/js/app.min.js')}}"></script>
+    <script src="{{asset('assets/libs/sweetalert2/sweetalert2.min.js')}}"></script>
+    <script src="{{asset('assets/js/pages/sweet-alerts.init.js')}}"></script>
     @include('sweetalert::alert')
 </body>
 

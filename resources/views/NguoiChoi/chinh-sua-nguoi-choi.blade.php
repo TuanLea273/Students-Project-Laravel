@@ -8,7 +8,11 @@
                 <form action="{{ route('xu-ly-chinh-sua-nguoi-choi', ['id' => $nguoiChoi->id]) }}" method="POST">
                     @csrf
                     @if($errors->any())
-                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+<<<<<<< HEAD
+                        <div class="alert alert-danger alert-dismissible bg-danger text-white border-0 fade show" role="alert">
+=======
+                        <div class="alert alert-danger bg-danger text-white border-1" role="alert">
+>>>>>>> 2959f8959fb38cc77a866ee9fe66fd91cd6bba34
                                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                     <span aria-hidden="true">×</span>
                                 </button>
@@ -37,10 +41,7 @@
                         <input type="file" id="hinh_dai_dien" name="hinh_dai_dien" value="{{ $nguoiChoi->hinh_dai_dien }}">
                     </div>
                     <!-- END -->
-                    <div class="form-group">
-                        <label for="diem_cao_nhat">Điểm cao nhất</label>
-                    <input type="text" class="form-control" id="diem_cao_nhat" name="diem_cao_nhat" value="{{ $nguoiChoi->diem_cao_nhat }}" >
-                    </div>
+    
                     <button type="submit" class="btn btn-primary waves-effect waves-light">Cập Nhật</button>
                 </form>
             </div> <!-- end card-body-->

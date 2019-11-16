@@ -68,10 +68,6 @@ class LinhVucController extends Controller
         $linhVuc=new LinhVucModel;
         $linhVuc=LinhVucModel::find($id);
         $linhVuc->delete();
-        if($linhVuc)
-        {
-           Alert::warning('Đã xóa lĩnh vực!','Dữ liệu sẽ bị xóa tạm thời');
-        }
         return redirect()->route('danh-sach-linh-vuc');
     }
     public function trash(){

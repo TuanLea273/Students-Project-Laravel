@@ -23,14 +23,33 @@
 
                                 <form action="{{ route('xu-ly-dang-nhap') }}" method="POST">
                                 @csrf
+                                @if($errors->any())
+                                <div class="alert alert-danger alert-dismissible bg-danger text-white border-0 fade show" role="alert">
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">×</span>
+                                        </button>
+                                        <ul>
+                                            @foreach($errors->all() as $error)
+                                                <li>{{ $error}}</li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                @elseif(isset($mess))
+                                <div class="alert alert-danger alert-dismissible bg-danger text-white border-0 fade show" role="alert">
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">×</span>
+                                    </button>
+                                   <p>{{$mess}}</p>
+                                </div>
+                                 @endif
                                     <div class="form-group mb-3">
                                         <label for="ten_dang_nhap">Tên đăng nhập</label>
-                                        <input name="ten_dang_nhap" id="ten_dang_nhap" class="form-control" type="text" required placeholder="Nhập tên đăng nhập">
+                                        <input name="ten_dang_nhap" id="ten_dang_nhap" class="form-control" type="text"  placeholder="Nhập tên đăng nhập">
                                     </div>
 
                                     <div class="form-group mb-3">
                                         <label for="password">Mật khẩu </label>
-                                        <input name="mat_khau" id="mat_khau" class="form-control" type="password" required  placeholder="Nhập mật khẩu ">
+                                        <input name="mat_khau" id="mat_khau" class="form-control" type="password"   placeholder="Nhập mật khẩu ">
                                     </div>
                               
 

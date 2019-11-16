@@ -12,7 +12,11 @@
                 <form class="form-horizontal" action="{{ route('xl-them-moi-goi-credit') }}" method="POST">
                     @csrf
                     @if($errors->any())
-                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+<<<<<<< HEAD
+                    <div class="alert alert-danger alert-dismissible bg-danger text-white border-0 fade show" role="alert">
+=======
+                    <div class="alert alert-danger bg-danger text-white border-1" role="alert">
+>>>>>>> 2959f8959fb38cc77a866ee9fe66fd91cd6bba34
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                             <span aria-hidden="true">×</span>
                         </button>

@@ -17,5 +17,6 @@
 <!-- third party.js ends -->
 <!-- Datatables init -->
 <script src="{{asset('assets/js/pages/datatables.init.js')}}"></script>
+<script src="{{asset('js/my-sweet-alert.js')}}"></script>
 @endsection
 <!-- END JS -->
