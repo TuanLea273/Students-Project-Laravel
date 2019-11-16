@@ -23,13 +23,12 @@
                     class="btn btn-warning waves-effect waves-light">
                     <i class="fas fa-database" style="padding-right:10px"></i>Danh sách câu hỏi đã xóa</a>
                 @endif
-                <table id="basic-datatable" class="table table-striped table-bordered dt-responsive nowrap">
+                <table id="tech-companies-1-clone" class="table table-striped">
                     <thead class="thead-dark">
                         <tr>
-                             
                             <th style="color:white">ID</th>
                             <th style="color:white">Nội dung câu hỏi</th>
-                            <th style="color:white"th>ID lĩnh vực</th>
+                            <th style="color:white">ID lĩnh vực</th>
                             <th style="color:white">Phương án A</th>
                             <th style="color:white">Phương án B</th>
                             <th style="color:white">Phương án C</th>
@@ -38,13 +37,10 @@
                             <th style="color:white"></th>
                         </tr>
                     </thead>
-
-
                     <tbody>
                         @if($hienThi == 1)
                         @foreach($cauHoi as $value)
                         <tr style="font-size: 120%; font-weight: bold;">
-                            
                             <td>{{ $value->id }}</td>
                             <td>{{ $value->noi_dung}}</td>
                             <td>{{ $value->linhVuc->ten_linh_vuc }}</td>
@@ -57,10 +53,9 @@
                                 <a href="{{ route('chinh-sua-cau-hoi',['id' => $value->id]) }}"
                                     class="btn btn-success waves-effect waves-light">
                                     <i class="mdi mdi-pencil color" style="padding-right:5px"></i>
-                                    Sửa
-                                </a>
-                                <a href="{{route('xoa-cau-hoi',['id' => $value->id ])}}"
-                                    class="btn btn-danger waves-effect waves-light" style="color:white"><i
+                                    Sửa</a>
+                                <a data-href="{{route('xoa-cau-hoi',['id' => $value->id ])}}"
+                                    class="btn btn-danger waves-effect waves-light xoa_cau_hoi" style="color:white"><i
                                         class="mdi mdi-trash-can-outline color " style="padding-right:5px"></i>Xóa</a>
                             </td>
                         </tr>

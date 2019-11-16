@@ -16,7 +16,6 @@
         <div class="card">
             <div class="card-body">
                 @if($hienThi == 1)
-
                 <a href="{{route('danh-sach-nguoi-choi-da-xoa')}}" style="margin-bottom: 10px; color:black"
                     class="btn btn-warning waves-effect waves-light">
                     <i class="fas fa-database" style="padding-right:10px"></i> Danh sách người chơi đã xóa</a>
@@ -46,18 +45,17 @@
                             <td>{{ $value->email}}</td>
                             <td>{{ $value->hinh_dai_dien}}</td>
                             <td>{{ $value->diem_cao_nhat}}</td>
-
                             <td>
                                 <a href="{{ route('chinh-sua-nguoi-choi',['id' => $value->id ]) }}"
                                     class="btn btn-success btn-x" id="sa-params">
                                     <i class="mdi mdi-pencil color" style="padding-right:5px"></i>Chỉnh sửa
                                 </a>
                                 <a href="{{ route('lich-su-cua-nguoi-choi',['id' => $value->id ]) }}"
-                                    class="btn btn-success btn-x" id="sa-params">
+                                    class="btn btn-success btn-x" id="sa-params" style="margin-left:5px">
                                     <i class="mdi mdi-history color" style="padding-right:5px"></i>Lịch sử
                                 </a>
                                 <a href="{{ route('xoa-nguoi-choi',['id' => $value->id ]) }}"
-                                    class="btn btn-danger btn-x" id="sa-params">
+                                    class="btn btn-danger btn-x" id="sa-params"style="margin-left:5px">
                                     <i class="mdi mdi-trash-can-outline color" style="padding-right:5px"></i>Xóa
                                 </a>
                             </td>
@@ -86,7 +84,6 @@
                 <a href="{{route('danh-sach-nguoi-choi')}}" class="btn btn-info waves-effect waves-light"><i
                         class="mdi mdi-keyboard-return" style="padding-right:10px"></i>Quay lại</a>
                 @endif
-
             </div> <!-- end card body-->
         </div> <!-- end card -->
     </div>

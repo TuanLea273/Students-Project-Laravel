@@ -23,7 +23,7 @@
                     class="btn btn-warning waves-effect waves-light"><i class="fas fa-database"style="padding-right:10px"></i>Danh sách lĩnh vực
                     đã xóa</a>
                 @endif
-                <table id="basic-datatable" class="table table-striped table-bordered dt-responsive nowrap">
+                <table id="tech-companies-1-clone" class="table table-striped">
                     <thead class="thead-dark">
                         <tr>
                             <th style="color:white">ID</th>

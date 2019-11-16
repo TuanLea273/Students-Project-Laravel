@@ -24,7 +24,7 @@
                     @foreach($luotChoi as $danhSachLuotChoi)
                         <tr>
                             <td>{{$danhSachLuotChoi->id}}</td>
-                            <td>{{$danhSachLuotChoi->nguoiChoi->ten_dang_nhap}} </td>
+                            <td>{{$danhSachLuotChoi->nguoiChoi->ten_dang_nhap}}</td>
                             <td>{{$danhSachLuotChoi->so_cau}}</td>
                             <td>{{$danhSachLuotChoi->diem}}</td>
                             <td>

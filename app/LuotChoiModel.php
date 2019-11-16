@@ -21,6 +21,6 @@ class LuotChoiModel extends Model
     // }
     public function dsCauHoi()
     {
-        return $this->belongsToMany('App\CauHoiModel','chi_tiet_luot_choi','luot_choi_id','cau_hoi_id','id','id')->withPivot('id','phuong_an','diem');
+        return $this->belongsToMany('App\CauHoiModel','chi_tiet_luot_choi','luot_choi_id','cau_hoi_id','id','id')->withPivot('luot_choi_id','phuong_an','diem');
     }
 }

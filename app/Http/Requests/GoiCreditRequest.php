@@ -16,8 +16,8 @@ class GoiCreditRequest extends FormRequest
     {
         return [
             'txtTenGoiCredit' => 'required',
-            'txtCredit' => 'required',
-            'txtSoTien' => 'required'
+            'txtCredit' => 'required|integer',
+            'txtSoTien' => 'required|integer'
         ];
     }
     public function messages()
@@ -25,7 +25,10 @@ class GoiCreditRequest extends FormRequest
         return[
             'txtTenGoiCredit.required' => 'Tên gói Credit không được để trống! ',
             'txtCredit.required' => 'Credit không được để trống! ',
-            'txtSoTien.required' => 'Số Tiền Credit không được để trống! '
+            'txtCredit.integer' => 'Credit chỉ được nhập số',
+            'txtSoTien.required' => 'Số Tiền Credit không được để trống! ',
+            'txtSoTien.integer' => 'Số tiền chỉ được nhập số'
+            
         ];
     }
 }
