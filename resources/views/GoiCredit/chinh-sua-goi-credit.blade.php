@@ -23,6 +23,7 @@
                     </ul>
                 </div>
             @endif   
+                    <input name="txtID" type="hidden" value="{{ $goiCredit->id }}">
                     <div class="form-group row mb-3">
                         <div class="col-12">
                             <label for="exampleInputEmail1">Tên gói credit</label>

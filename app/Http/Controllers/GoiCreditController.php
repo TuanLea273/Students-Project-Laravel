@@ -55,31 +55,32 @@ class GoiCreditController extends Controller
         $goiCredit = GoiCreditModel::find($id);
         return view('GoiCredit.chinh-sua-goi-credit',compact('goiCredit'));
     }
-    public function update(GoiCreditRequest $request, $id)
+    public function update(GoiCreditRequest $request)
     {
+        $id = $request->input('txtID');
+        $goiCredit = GoiCreditModel::find($id);
         $TenGoi = $request->input('txtTenGoiCredit');
         $Credit = $request->input('txtCredit');
         $SoTien = $request->input('txtSoTien');
         //Tạo biến cờ để lấy giá trị true/false;
-        $flag = true;
+        $flag = $goiCredit::where('ten_goi',$TenGoi)->exists();
         //Nếu mà gói vừa tạo hợp lệ thì ta thêm nó vào db
-        if($flag)
+        if(!$flag)
         {
-            //Tạo mới 1 đối tượng gói credit
-            $updateGoiCredit = GoiCreditModel::find($id);
             //Gán giá trị cho từng thuộc tính
-            $updateGoiCredit->ten_goi = $TenGoi;
-            $updateGoiCredit->credit = $Credit;
-            $updateGoiCredit->so_tien = $SoTien; 
+            $goiCredit->ten_goi = $TenGoi;
+            $goiCredit->credit = $Credit;
+            $goiCredit->so_tien = $SoTien; 
             //Lưu lại
-            $updateGoiCredit->save();
+            $goiCredit->save();
             //Chuyển hướng trở về danh sách
             Alert::success('Cập nhật thành công!');
             return redirect(route('danh-sach-goi-credit'));
 
         }
         //Cần thêm dòng để thông báo lỗi
-        return redirect(route('danh-sach-goi-credit'));
+        Alert::error('Chỉnh sửa thất bại','Gói credit đã tồn tại');
+        return view('GoiCredit.chinh-sua-goi-credit',compact('goiCredit'));
     }
 
     //Xóa mềm dữ liệu
