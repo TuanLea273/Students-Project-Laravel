@@ -67,5 +67,22 @@ Route::middleware('auth')->group(function(){
     Route::prefix('chi-tiet-luot-choi')->group(function(){
         Route::get('danh-sach','ChiTietLuotChoiController@index')->name('danh-sach-chi-tiet');
     }); 
+    // View Cấu Hình Điểm Câu Hỏi
+    Route::prefix('cau-hinh-diem')->group(function(){
+        Route::get('danh-sach','CauHinhDiemCauHoiController@index')->name('danh-sach-cau-hinh');
+        Route::get('them-moi','CauHinHDiemCauHoiController@create')->name('them-moi-cau-hinh');
+        Route::post('them-moi','CauHinHDiemCauHoiController@store')->name('xu-ly-them-moi-cau-hinh');
+        Route::get('chinh-sua/{id}','CauHinhDiemCauHoiController@edit')->name('chinh-sua-cau-hinh');
+        Route::post('chinh-sua/{id}','CauHinhDiemCauHoiController@update')->name('xu-ly-chinh-sua-cau-hinh');
+    });
+    Route::prefix('cau-hinh-app')->group(function(){
+        Route::get('danh-sach','CauHinhAppController@index')->name('danh-sach-app');
+        Route::get('them-moi','CauHinhAppController@create')->name('them-moi-app');
+        Route::post('them-moi','CauHinhAppController@store')->name('xu-ly-them-moi-app');
+        Route::get('chinh-sua/{id}','CauHinhAppController@edit')->name('chinh-sua-app');
+        Route::post('chinh-sua/{id}','CauHinhAppController@update')->name('xu-ly-chinh-sua-app');
+
+
+    });
 });
 
