@@ -56,6 +56,14 @@
                         <a href="{{ route('danh-sach-luot-choi') }}"> <i class="la la-gamepad"
                                 style="color:GreenYellow"></i>Lượt Chơi <div class="arrow-down"></div></a>
                     </li>
+                    <li class="has-submenu">
+                        <a href="{{ route('danh-sach-cau-hinh') }}"> <i class="la la-gamepad"
+                                style="color:GreenYellow"></i>Cấu Hình Điểm <div class="arrow-down"></div></a>
+                    </li>
+                    <li class="has-submenu">
+                        <a href="{{ route('danh-sach-app') }}"> <i class="la la-gamepad"
+                                style="color:GreenYellow"></i>Cấu Hình App <div class="arrow-down"></div></a>
+                    </li>
 
                 </ul>
                 <!-- End navigation menu -->

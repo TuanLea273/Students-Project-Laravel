@@ -19,3 +19,11 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::prefix('linh-vuc')->group(function(){
     Route::get('danh-sach','API\LinhVucAPI@index')->name('danh-sach-linh-vuc');
 });
+
+Route::prefix('nguoi-choi')->group(function(){
+	Route::get('danh-sach','API\NguoiChoiAPI@index')->name('danh-sach-nguoi-choi');
+	Route::get('show','API\NguoiChoiAPI@show')->name('show-nguoi-choi');
+});
+Route::prefix('cau-hoi')->group(function(){
+	Route::get('danh-sach','API\CauHoiAPI@index')->name('danh-sach-cau-hoi');
+});

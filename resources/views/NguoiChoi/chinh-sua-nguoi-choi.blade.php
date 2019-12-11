@@ -20,7 +20,7 @@
                     @endif
                     <div class="form-group">
                         <label for="ten_dang_nhap">Tên đăng nhập</label>
-                        <input type="text" class="form-control" id="ten_dang_nhap" name="ten_dang_nhap" value="{{ $nguoiChoi->ten_dang_nhap }}">
+                        <input type="text" class="form-control" id="ten_dang_nhap" name="ten_dang_nhap" disabled value="{{ $nguoiChoi->ten_dang_nhap }}">
                     </div>
                     <div class="form-group">
                         <label for="mat_khau">Mật khẩu</label>
