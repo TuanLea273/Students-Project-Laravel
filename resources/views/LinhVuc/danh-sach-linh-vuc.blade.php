@@ -76,7 +76,5 @@
 @endsection
 <!-- End Pagecontent -->
 <!-- JS -->
-@section('js')
 <script src="{{asset('js/my-sweet-alert.js')}}"></script>
-@endsection
 @include('Body.js')
