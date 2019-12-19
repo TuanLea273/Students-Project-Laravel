@@ -52,7 +52,7 @@ class CauHoiAPI extends Controller
      */
     public function show($id)
     {
-        $cauHoi
+    	
     }
 
     /**

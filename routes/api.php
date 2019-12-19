@@ -26,4 +26,5 @@ Route::prefix('nguoi-choi')->group(function(){
 });
 Route::prefix('cau-hoi')->group(function(){
 	Route::get('danh-sach','API\CauHoiAPI@index')->name('danh-sach-cau-hoi');
+	Route::get('thuoc','API\LinhVucAPI@getDSCauHoi');
 });

@@ -12,6 +12,7 @@ class CauHoiModel extends Model
     use SoftDeletes;
     public function linhVuc()
     {
-        return $this->belongsTo('App\LinhVucModel');
+        return $this->belongsTo('App\LinhVucModel','linh_vuc_id','id');
+        //LinhVuc.id = CauHoi.linh_vuc_id
     }
 }
