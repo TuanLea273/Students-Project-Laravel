@@ -16,6 +16,5 @@ class GoiCreditAPI extends Controller
             'data' => $dsGoiCredit
         ];
         return response()->json($result);
-
     }
 }

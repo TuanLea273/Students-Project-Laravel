@@ -18,4 +18,15 @@ class LinhVucAPI extends Controller
         ];
         return response()->json($result);
     }
+
+    public function getDSCauHoi(Request $r)
+    {
+        $id = $r->query('linhVucId');
+        $dsCauHoi = LinhVucModel::find($id)->dsCauHoi()->get();
+        $result = [
+            'success' =>true,
+            'data' => $dsCauHoi
+        ];
+        return response()->json($result);
+    }
 }
