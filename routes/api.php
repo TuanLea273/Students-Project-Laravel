@@ -27,3 +27,6 @@ Route::prefix('nguoi-choi')->group(function(){
 Route::prefix('cau-hoi')->group(function(){
 	Route::get('danh-sach','API\CauHoiAPI@index')->name('danh-sach-cau-hoi');
 });
+Route::prefix('goi-credit')->group(function(){
+	Route::get('danh-sach','API\GoiCreditAPI@index')->name('danh-sach-goi-credit');
+});
