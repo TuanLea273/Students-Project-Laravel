@@ -24,7 +24,7 @@ class LinhVucAPI extends Controller
         $id = $r->query('linhVucId');
         $dsCauHoi = LinhVucModel::find($id)->dsCauHoi()->get();
         $result = [
-            'success' =>true,
+            'success' => true,
             'data' => $dsCauHoi
         ];
         return response()->json($result);

@@ -16,15 +16,28 @@ class NguoiChoiAPI extends Controller
     	];
     	return response()->json($result);
     }
-    public function show(Request $r)
+
+    public function showNguoiChoi(Request $r)
     {
-    	$ten_dang_nhap = $r->query('Username');
-    	$mat_khau = $r->query('Password');
-		$nguoiChoi = NguoiChoiModel::where('ten_dang_nhap',$ten_dang_nhap)->get();
-    		$result = [
-    		'success' => true,
-    		'data' => $nguoiChoi
-    	];
-    	return response()->json($result);
+        $ten_dang_nhap = $r->query('Username');
+        $mat_khau = $r->query('Password');
+        $nguoiChoi = NguoiChoiModel::where('ten_dang_nhap',$ten_dang_nhap)->get();
+            $result = [
+            'success' => true,
+            'data' => $nguoiChoi
+        ];
+        return response()->json($result);
     }
+
+    public function showLuotChoi(Request $r)
+    {
+        $nguoi_choi_id = $r->query('NguoiChoiID');
+        $luotChoi = NguoiChoiModel::find($nguoi_choi_id)->dsLuotChoi;
+        $result = [
+            'success' => true,
+            'data' => $luotChoi
+        ];
+        return response()->json($result);
+    }
+
 }

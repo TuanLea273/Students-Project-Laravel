@@ -22,7 +22,8 @@ Route::prefix('linh-vuc')->group(function(){
 
 Route::prefix('nguoi-choi')->group(function(){
 	Route::get('danh-sach','API\NguoiChoiAPI@index')->name('danh-sach-nguoi-choi');
-	Route::get('show','API\NguoiChoiAPI@show')->name('show-nguoi-choi');
+	Route::get('show-nguoi-choi','API\NguoiChoiAPI@showNguoiChoi')->name('show-nguoi-choi');
+	Route::get('show-luot-choi','API\NguoiChoiAPI@showLuotChoi')->name('show-luot-choi');
 });
 Route::prefix('cau-hoi')->group(function(){
 	Route::get('danh-sach','API\CauHoiAPI@index')->name('danh-sach-cau-hoi');
