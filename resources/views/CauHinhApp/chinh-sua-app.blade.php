@@ -44,7 +44,7 @@
                     <!-- <div class="form-group text-right mb-0"> -->
                     <div class="form-group mb-0 justify-content-end row">
                         <div class="col-7">
-                            <button type="submit" class="btn btn-success btn-rounded waves-effect waves-light">Thêm </button>
+                            <button type="submit" class="btn btn-success btn-rounded waves-effect waves-light"> Sửa </button>
                             <a href="{{ route('danh-sach-app' )}}"  class="btn btn-danger btn-rounded  waves-effect waves-light">Hủy</a>
                     <!-- </div> -->
                         </div>
