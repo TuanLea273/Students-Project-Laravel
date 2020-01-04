@@ -10,6 +10,7 @@ class NguoiChoiModel extends Model
 {
     protected $table = 'nguoi_choi';
     use SoftDeletes;
+     // protected $hidden = ['mat_khau'];
 
     public function dsGoiCredit()
     {
