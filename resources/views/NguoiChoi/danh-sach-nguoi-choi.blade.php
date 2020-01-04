@@ -27,10 +27,10 @@
                     <thead class="thead-dark">
                         <tr>
                             <th style="color:white">Tên Đăng Nhập</th>
-                            <th style="color:white">Mật Khẩu</th>
                             <th style="color:white">Email</th>
                             <th style="color:white">Ảnh Đại Diện</th>
                             <th style="color:white">Điểm Cao Nhất</th>
+                            <th style="color:white">Credit</th>          
                             <th style="color:white"></th>
                         </tr>
                     </thead>
@@ -41,11 +41,15 @@
                         @foreach($nguoiChoi as $value)
                         <tr style="font-size: 120%; font-weight: bold;">
                             <td>{{ $value->ten_dang_nhap}}</td>
-                            <td>{{ $value->mat_khau}} </td>
                             <td>{{ $value->email}}</td>
                             <td>{{ $value->hinh_dai_dien}}</td>
-                            <td>{{ $value->diem_cao_nhat}}</td>
-                            <td>
+                            <td>{{  $value->diem_cao_nhat}}</td>
+                            <td>{{      $value->credit}}</td>
+                            <td>  
+                                <a href="{{ route('them-moi-nguoi-choi') }}"
+                                class="btn btn-primary btn-x" id="sa-params">
+                                <i class="mdi mdi-pencil color" style="padding-right:5px"></i>Thêm mới
+                            </a>
                                 <a href="{{ route('chinh-sua-nguoi-choi',['id' => $value->id ]) }}"
                                     class="btn btn-success btn-x" id="sa-params">
                                     <i class="mdi mdi-pencil color" style="padding-right:5px"></i>Chỉnh sửa
@@ -64,11 +68,12 @@
                         @else
                         @foreach($nguoiChoi as $value)
                         <tr style="font-size: 120%; font-weight: bold;">
-                            <td>{{ $value->ten_dang_nhap}}</td>
-                            <td>{{ $value->mat_khau}} </td>
+                            <  <td>{{ $value->ten_dang_nhap}}</td>
                             <td>{{ $value->email}}</td>
-                            <td>{{ $value->anh_dai_dien}}</td>
-                            <td>{{ $value->hinh_cao_nhat}}</td>
+                            <td>{{ $value->hinh_dai_dien}}</td>
+                            <td>{{  $value->diem_cao_nhat}}</td>
+                            <td>{{      $value->credit}}</td>
+                        
                             <td>
                                 <a href="{{ route('phuc-hoi-nguoi-choi',['id' => $value->id ])  }}"
                                     class="btn btn-success waves-effect waves-light ">

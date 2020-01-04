@@ -24,7 +24,36 @@ class NguoiChoiController extends Controller
         $nguoiChoi = NguoiChoiModel::all();
         return view('NguoiChoi.danh-sach-nguoi-choi',compact('nguoiChoi','hienThi'));
     }
-
+    public function create()
+    {
+        return view('NguoiChoi.them-moi-nguoi-choi');
+    }
+    public function store(NguoiChoiRequest $request)
+    {
+        $nguoiChoi = new NguoiChoiModel;
+        $ten_dang_nhap = $request->ten_dang_nhap;
+        $mat_khau = $request->mat_khau;
+        $email = $request->email;
+        $hinh_dai_dien = $request->hinh_dai_dien;
+        $diem_cao_nhat = $request->diem_cao_nhat;
+        $credit = $request->credit;
+        $flag = $nguoiChoi::where('ten_dang_nhap',$ten_dang_nhap)->exists();
+        if(!$flag){
+            $nguoiChoi->ten_dang_nhap = $ten_dang_nhap;
+            $nguoiChoi->mat_khau = $mat_khau;
+            $nguoiChoi->email = $email;
+            $nguoiChoi->hinh_dai_dien = $hinh_dai_dien;
+            $nguoiChoi->diem_cao_nhat = $diem_cao_nhat;
+            $nguoiChoi->credit = $credit;
+            $nguoiChoi->save();
+            Alert::success('Thêm thành công','Successfully');
+            return redirect()->route('danh-sach-nguoi-choi');
+        }else
+        {
+            alert()->error('Thêm thất bại!','Người chơi đã tồn tại');
+            return redirect()->route('them-moi-nguoi-choi');
+        }
+    }
     public function edit($id)
     {
         $nguoiChoi = NguoiChoiModel::findOrFail($id);
